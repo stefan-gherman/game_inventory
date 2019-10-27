@@ -19,18 +19,23 @@ def check_longest(lst):                   # A function that sorts the list of tu
 
 
 
-def print_table(inventory, order = ""):    #Srep 3
-    displayable_dict = sorted(inventory.items(), key = lambda item: item[1], reverse = True)
-    padding = check_longest(displayable_dict)
+def print_table(inventory, order = ""):    #Step 3
+    if order == "count,desc":
+        displayable_dict = sorted(inventory.items(), key = lambda item: item[1], reverse = True)
+    elif order == "count,asc":
+        displayable_dict = sorted(inventory.items(), key = lambda item: item[1])
+    else:
+        displayable_dict = list(inventory.items())
+
+    #padding = check_longest(displayable_dict)
     displayable_dict = dict(displayable_dict)
-    print(padding)
     
     
     
     print("-----------------")
     print("item name | count")
     print("-----------------")
-
+    print(displayable_dict)
 
 
 #tests
@@ -42,6 +47,14 @@ add_to_inventory(INV, dragon_loot)
 display_inventory(INV)
 
 print_table(INV)
+print('\n')
+
+print_table (INV, "count,desc")
+
+print('\n')
+
+print_table (INV, "count,asc")
+
 
 #a = sorted(INV.items())
 #print(type(a), a, a[1])
