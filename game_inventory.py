@@ -27,16 +27,18 @@ def print_table(inventory, order = ""):    #Step 3
     else:
         displayable_dict = list(inventory.items())
 
-    #padding = check_longest(displayable_dict)
+    padding = check_longest(displayable_dict)
     displayable_dict = dict(displayable_dict)
     
     
     
-    print("-----------------")
-    print("item name | count")
-    print("-----------------")
-    print(displayable_dict)
-
+    print("-----------------" + '\n')
+    print("item name | count" + '\n')
+    print("-----------------" + '\n')
+    for item, val in displayable_dict.items():
+        print(str(item).rjust(padding) + " | "  + str(val).rjust(4) + '\n')
+    print("-----------------")    
+    
 
 #tests
 INV = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}        
