@@ -13,27 +13,36 @@ def add_to_inventory(inventory, added_items): # Step 2
             inventory[item] = 1     
 
 
-def print_table(inventory, order = ""):
+def check_longest(lst):                   # A function that sorts the list of tuples by the lenght of the first element in the tuple
+    sort_lenght = sorted(lst, key = lambda x: len(x[0]), reverse = True)    
+    return len(sort_lenght[0][0])
+
+
+
+def print_table(inventory, order = ""):    #Srep 3
     displayable_dict = sorted(inventory.items(), key = lambda item: item[1], reverse = True)
+    padding = check_longest(displayable_dict)
     displayable_dict = dict(displayable_dict)
-    print(type(displayable_dict))
+    print(padding)
     
     
     
     print("-----------------")
     print("item name | count")
     print("-----------------")
-    print(displayable_dict)
 
 
 
 #tests
 INV = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}        
-display_inventory(INV)
+#display_inventory(INV)
 dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
-print("\n")
+#print("\n")
 add_to_inventory(INV, dragon_loot)
 display_inventory(INV)
 
 print_table(INV)
+
+#a = sorted(INV.items())
+#print(type(a), a, a[1])
   
