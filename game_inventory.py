@@ -16,16 +16,15 @@ def add_to_inventory(inventory, added_items): # Step 2
 def print_table(inventory, order = ""):
 
 
-    displayable_dict = sorted(inventory.items(), key = lambda item,value: value)
+    displayable_dict = sorted(inventory.items(), key = lambda item: item[1], reverse = True)
 
-    
+    displayable_dict = dict(displayable_dict)
     print(type(displayable_dict))
 
     print("-----------------")
     print("item name | count")
     print("-----------------")
     print(displayable_dict)
-
 
 #tests
 INV = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}        
