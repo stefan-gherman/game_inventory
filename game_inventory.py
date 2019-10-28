@@ -42,9 +42,12 @@ def print_table(inventory, order = ""):    #Step 3
 
 
 def string_separator(string):  # A function used to turn csv file input into a list usable by the add inventory function
-    new_string = string.replace(",", ".").replace("\n","").replace("    ","")
-    return new_string.split('.')
-
+    new_string = string.rstrip(',').lstrip(',').replace(",", ".").replace("\n","").replace("    ","")
+    new_string = new_string.split('.')
+    for item in new_string:
+        if item == "":
+            new_string.pop(item)
+    return new_string
 
 
 def import_inventory(inventory, filename = "import_inventory.csv"): #Step 4
@@ -116,3 +119,5 @@ print_table(INV, "count,asc")
 print_table (INV, "count,desc")
 
 # export_inventory({"horse":2, "food":3, "something_else":1},"test_file.csv")
+
+# print(",cal,vbn,ccfs,".lstrip(',').rstrip(','))
