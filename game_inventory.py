@@ -40,17 +40,18 @@ def print_table(inventory, order = ""):    #Step 3
     print("-----------------")    
 
 
-def string_separator(string):
+def string_separator(string):  # A function used to turn csv file input into a list usable by the add inventory function
     new_string = string.replace(",", " ")
     return new_string.split()
 
-def import_inventory(inventory, filename = "import_inventory.csv"):
+
+
+def import_inventory(inventory, filename = "import_inventory.csv"): #Step 3
 
     try:
         with open(filename) as csv_inv:
             mod_items = csv_inv.read()
         mod_items = string_separator(mod_items)
-        print(mod_items, type(mod_items))
         add_to_inventory(INV, mod_items)
         
     except FileNotFoundError:
