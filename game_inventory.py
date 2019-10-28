@@ -1,11 +1,12 @@
 # game inventory functions file
 
+
 def display_inventory(inventory):   # Step 1
     for item, value in inventory.items():
         print("{}: {}".format(item, value))
 
 
-def add_to_inventory(inventory, added_items): # Step 2
+def add_to_inventory(inventory, added_items):  # Step 2
     for item in added_items:
         if item in inventory.keys():
             inventory[item] += 1
@@ -92,31 +93,30 @@ def export_inventory(inventory, filename="export_inventory.csv"): #Step 5
             
 
 
-#tests
+# tests
 INV = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}        
-#display_inventory(INV)
+# display_inventory(INV)
 dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
-#print("\n")
+# print("\n")
 add_to_inventory(INV, dragon_loot)
-#display_inventory(INV)
+# display_inventory(INV)
 
 print_table(INV)
-#print('\n')
+# print('\n')
 
-#print_table (INV, "count,desc")
+# print_table (INV, "count,desc")
 
-#print('\n')
+# print('\n')
 
 print_table (INV, "count,asc")
 
 
-#a = sorted(INV.items())
-#print(type(a), a, a[1])
+# a = sorted(INV.items())
+# print(type(a), a, a[1])
 
 
 
-#import_inventory(INV)
+# import_inventory(INV)
 print_table (INV, "count,desc")
 
-
-#export_inventory({"horse":2, "food":3, "something_else":1},"test_file.csv")
+# export_inventory({"horse":2, "food":3, "something_else":1},"test_file.csv")
