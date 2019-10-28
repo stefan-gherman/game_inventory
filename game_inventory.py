@@ -43,8 +43,11 @@ def print_table(inventory, order=""):  # Step 3
     print("-----------------")
 
 
-# A function used to turn csv file input into a list usable by the add
+'''A function used to turn csv file input into a list
+usable by the add to inventory function'''
 # inventory function
+
+
 def string_separator(string):
     new_string = string.rstrip(',').lstrip(',').replace(
         ",", ".").replace("\n", "").replace("    ", "")
