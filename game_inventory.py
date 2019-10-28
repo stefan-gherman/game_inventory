@@ -2,7 +2,7 @@
 
 def display_inventory(inventory):   # Step 1
     for item, value in inventory.items():
-        print("{}:{}".format(item, value))
+        print("{}: {}".format(item, value))
 
 
 def add_to_inventory(inventory, added_items): # Step 2
@@ -31,18 +31,18 @@ def print_table(inventory, order = ""):    #Step 3
     displayable_dict = dict(displayable_dict)
     
     
-    
-    print("-----------------" + '\n')
-    print("item name | count" + '\n')
-    print("-----------------" + '\n')
+    #print(padding)
+    print("-----------------" )
+    print("item name | count" )
+    print("-----------------" )
     for item, val in displayable_dict.items():
-        print(str(item).rjust(padding) + " | "  + str(val).rjust(4) + '\n')
+        print(str(item).rjust(padding) + " | "  + str(val).rjust(padding))
     print("-----------------")    
 
 
 def string_separator(string):  # A function used to turn csv file input into a list usable by the add inventory function
-    new_string = string.replace(",", " ")
-    return new_string.split()
+    new_string = string.replace(",", ".").replace("\n","").replace("    ","")
+    return new_string.split('.')
 
 
 
@@ -52,10 +52,10 @@ def import_inventory(inventory, filename = "import_inventory.csv"): #Step 3
         with open(filename) as csv_inv:
             mod_items = csv_inv.read()
         mod_items = string_separator(mod_items)
-        add_to_inventory(INV, mod_items)
+        add_to_inventory(inventory, mod_items)
         
     except FileNotFoundError:
-        print("File {} not found!".format(filename))            
+        print("File '{}' not found!".format(filename))            
 
 
 def calculate_items(inventory):
@@ -98,16 +98,16 @@ INV = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}
 dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
 #print("\n")
 add_to_inventory(INV, dragon_loot)
-display_inventory(INV)
+#display_inventory(INV)
 
 print_table(INV)
-print('\n')
+#print('\n')
 
-print_table (INV, "count,desc")
+#print_table (INV, "count,desc")
 
-print('\n')
+#print('\n')
 
-#print_table (INV, "count,asc")
+print_table (INV, "count,asc")
 
 
 #a = sorted(INV.items())
@@ -115,12 +115,8 @@ print('\n')
 
 
 
-import_inventory(INV)
-<<<<<<< HEAD
+#import_inventory(INV)
 print_table (INV, "count,desc")
 
 
-export_inventory({"horse":2, "food":3, "something_else":1},"test_file.csv")
-=======
-print_table (INV, "count,desc")
->>>>>>> 37874c565da9ce95f119a23ee14dfb3541dd214a
+#export_inventory({"horse":2, "food":3, "something_else":1},"test_file.csv")
