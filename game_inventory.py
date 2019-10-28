@@ -1,19 +1,20 @@
 # game inventory functions file
 
+
 def display_inventory(inventory):   # Step 1
     for item, value in inventory.items():
         print("{}: {}".format(item, value))
 
 
-def add_to_inventory(inventory, added_items): # Step 2
+def add_to_inventory(inventory, added_items):  # Step 2
     for item in added_items:
         if item in inventory.keys():
             inventory[item] += 1
         else:
-            inventory[item] = 1     
+            inventory[item] = 1
 
-
-def check_longest(lst):                   # A function that sorts the list of tuples by the lenght of the first element in the tuple
+ # A function that sorts the list of tuples by the lenght of the first element in the tuple
+def check_longest(lst):                  
     sort_lenght = sorted(lst, key = lambda x: len(x[0]), reverse = True)    
     return len(sort_lenght[0][0])
 
@@ -31,22 +32,25 @@ def print_table(inventory, order = ""):    #Step 3
     displayable_dict = dict(displayable_dict)
     
     
-    #print(padding)
+   # print(padding)
     print("-----------------" )
     print("item name | count" )
     print("-----------------" )
     for item, val in displayable_dict.items():
-        print(str(item).rjust(padding) + " | "  + str(val).rjust(padding))
+        print(str(item).rjust(9) + " |"  + str(val).rjust(6))
     print("-----------------")    
 
 
 def string_separator(string):  # A function used to turn csv file input into a list usable by the add inventory function
-    new_string = string.replace(",", ".").replace("\n","").replace("    ","")
-    return new_string.split('.')
+    new_string = string.rstrip(',').lstrip(',').replace(",", ".").replace("\n","").replace("    ","")
+    new_string = new_string.split('.')
+    for item in new_string:
+        if item == "":
+            new_string.pop(item)
+    return new_string
 
 
-
-def import_inventory(inventory, filename = "import_inventory.csv"): #Step 3
+def import_inventory(inventory, filename = "import_inventory.csv"): #Step 4
 
     try:
         with open(filename) as csv_inv:
@@ -65,7 +69,7 @@ def calculate_items(inventory):
     return total_items    
 
 
-def export_inventory(inventory, filename="export_inventory.csv"): #Step 4
+def export_inventory(inventory, filename="export_inventory.csv"): #Step 5
     sort_inv = sorted(inventory.items(), key = lambda item:item[1], reverse = True)
     sort_inv = dict(sort_inv)
     string_items = []
@@ -87,36 +91,38 @@ def export_inventory(inventory, filename="export_inventory.csv"): #Step 4
         with open(filename, 'w') as export_inv:
             export_inv.write(string_items)
     except PermissionError:
-        print("You don't have permission creating file '{}'!".format(filename))    
-        
-            
-
-
-#tests
+        print("You don't have permission creating file '{}'!".format(filename))   
+# tests
 INV = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}        
-#display_inventory(INV)
+# display_inventory(INV)
 dragon_loot = ['gold coin', 'dagger', 'gold coin', 'gold coin', 'ruby']
-#print("\n")
+# print("\n")
 add_to_inventory(INV, dragon_loot)
-#display_inventory(INV)
+# display_inventory(INV)
 
 print_table(INV)
-#print('\n')
+# print('\n')
 
-#print_table (INV, "count,desc")
+# print_table (INV, "count,desc")
 
-#print('\n')
+# print('\n')
 
-print_table (INV, "count,asc")
-
-
-#a = sorted(INV.items())
-#print(type(a), a, a[1])
+print_table(INV, "count,asc")
 
 
+# a = sorted(INV.items())
+# print(type(a), a, a[1])
 
-#import_inventory(INV)
+
+
+# import_inventory(INV)
 print_table (INV, "count,desc")
 
+# export_inventory({"horse":2, "food":3, "something_else":1},"test_file.csv")
 
-#export_inventory({"horse":2, "food":3, "something_else":1},"test_file.csv")
+# print(",cal,vbn,ccfs,".lstrip(',').rstrip(','))
+
+test_dict = {}
+import_inventory(test_dict, "test_file.csv")
+
+print_table (test_dict, "count,asc")
