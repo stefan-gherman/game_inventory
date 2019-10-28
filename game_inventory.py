@@ -116,7 +116,11 @@ print('\n')
 
 
 import_inventory(INV)
+<<<<<<< HEAD
 print_table (INV, "count,desc")
 
 
 export_inventory({"horse":2, "food":3, "something_else":1},"test_file.csv")
+=======
+print_table (INV, "count,desc")
+>>>>>>> 37874c565da9ce95f119a23ee14dfb3541dd214a
