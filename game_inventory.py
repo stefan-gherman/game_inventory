@@ -32,12 +32,12 @@ def print_table(inventory, order = ""):    #Step 3
     displayable_dict = dict(displayable_dict)
     
     
-    print(padding)
+   # print(padding)
     print("-----------------" )
     print("item name | count" )
     print("-----------------" )
     for item, val in displayable_dict.items():
-        print(str(item).rjust(padding) + " |"  + str(val).rjust(padding))
+        print(str(item).rjust(9) + " |"  + str(val).rjust(6))
     print("-----------------")    
 
 
@@ -121,3 +121,8 @@ print_table (INV, "count,desc")
 # export_inventory({"horse":2, "food":3, "something_else":1},"test_file.csv")
 
 # print(",cal,vbn,ccfs,".lstrip(',').rstrip(','))
+
+test_dict = {}
+import_inventory(test_dict, "test_file.csv")
+
+print_table (test_dict, "count,asc")
