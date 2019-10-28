@@ -11,10 +11,10 @@ def add_to_inventory(inventory, added_items):  # Step 2
         if item in inventory.keys():
             inventory[item] += 1
         else:
-            inventory[item] = 1     
+            inventory[item] = 1
 
-
-def check_longest(lst):                   # A function that sorts the list of tuples by the lenght of the first element in the tuple
+ # A function that sorts the list of tuples by the lenght of the first element in the tuple
+def check_longest(lst):                  
     sort_lenght = sorted(lst, key = lambda x: len(x[0]), reverse = True)    
     return len(sort_lenght[0][0])
 
@@ -32,12 +32,12 @@ def print_table(inventory, order = ""):    #Step 3
     displayable_dict = dict(displayable_dict)
     
     
-    #print(padding)
+    print(padding)
     print("-----------------" )
     print("item name | count" )
     print("-----------------" )
     for item, val in displayable_dict.items():
-        print(str(item).rjust(padding) + " | "  + str(val).rjust(padding))
+        print(str(item).rjust(padding) + " |"  + str(val).rjust(padding))
     print("-----------------")    
 
 
@@ -88,11 +88,7 @@ def export_inventory(inventory, filename="export_inventory.csv"): #Step 5
         with open(filename, 'w') as export_inv:
             export_inv.write(string_items)
     except PermissionError:
-        print("You don't have permission creating file '{}'!".format(filename))    
-        
-            
-
-
+        print("You don't have permission creating file '{}'!".format(filename))   
 # tests
 INV = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}        
 # display_inventory(INV)
@@ -108,7 +104,7 @@ print_table(INV)
 
 # print('\n')
 
-print_table (INV, "count,asc")
+print_table(INV, "count,asc")
 
 
 # a = sorted(INV.items())
