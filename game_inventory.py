@@ -55,7 +55,42 @@ def import_inventory(inventory, filename = "import_inventory.csv"): #Step 3
         add_to_inventory(INV, mod_items)
         
     except FileNotFoundError:
-        print("File not found")            
+        print("File {} not found!".format(filename))            
+
+
+def calculate_items(inventory):
+    total_items = 0
+    for item in inventory.keys():
+        total_items += inventory[item]
+    return total_items    
+
+
+def export_inventory(inventory, filename="export_inventory.csv"): #Step 4
+    sort_inv = sorted(inventory.items(), key = lambda item:item[1], reverse = True)
+    sort_inv = dict(sort_inv)
+    string_items = []
+
+    items_write = calculate_items(sort_inv)
+
+    while items_write > 0:
+        for item in sort_inv.keys():
+            if sort_inv[item] != 0:
+                string_items.append(item)
+                sort_inv[item] -= 1
+                items_write -= 1
+    
+    string_items = ",".join(string_items)
+    #print(string_items)            
+
+
+    try:
+        with open(filename, 'w') as export_inv:
+            export_inv.write(string_items)
+    except PermissionError:
+        print("You don't have permission creating file '{}'!".format(filename))    
+        
+            
+
 
 #tests
 INV = {'rope': 1, 'torch': 6, 'gold coin': 42, 'dagger': 1, 'arrow': 12}        
@@ -82,3 +117,6 @@ print('\n')
 
 import_inventory(INV)
 print_table (INV, "count,desc")
+
+
+export_inventory({"horse":2, "food":3, "something_else":1},"test_file.csv")
