@@ -46,7 +46,7 @@ def string_separator(string):  # A function used to turn csv file input into a l
 
 
 
-def import_inventory(inventory, filename = "import_inventory.csv"): #Step 3
+def import_inventory(inventory, filename = "import_inventory.csv"): #Step 4
 
     try:
         with open(filename) as csv_inv:
@@ -65,7 +65,7 @@ def calculate_items(inventory):
     return total_items    
 
 
-def export_inventory(inventory, filename="export_inventory.csv"): #Step 4
+def export_inventory(inventory, filename="export_inventory.csv"): #Step 5
     sort_inv = sorted(inventory.items(), key = lambda item:item[1], reverse = True)
     sort_inv = dict(sort_inv)
     string_items = []
